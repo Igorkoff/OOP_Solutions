@@ -26,9 +26,15 @@ public class Main
         processing.core.PApplet.runSketch( a, new Life());
     }
 
+    public void stars()
+    {
+        String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new StarMap());
+    }
+
     public static void main(String[] args)
     {
         Main main = new Main();
-        main.life();
+        main.stars();
     }
-} 
+}
