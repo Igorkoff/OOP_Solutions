@@ -32,9 +32,15 @@ public class Main
         processing.core.PApplet.runSketch( a, new StarMap());
     }
 
+    public void gant()
+    {
+        String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Gant());
+    }
+
     public static void main(String[] args)
     {
         Main main = new Main();
-        main.stars();
+        main.gant();
     }
 }
