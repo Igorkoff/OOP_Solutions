@@ -42,12 +42,66 @@ public class Gant extends PApplet
 	
 	public void mousePressed()
 	{
-		println("Mouse pressed");	
-	}
+        for (int i = 0; i < tasks.size(); i++)
+        {
+            float y1 = (border + border + rowHeight * i) - 15;
+            float y2 = (border + border + rowHeight * i) + 20;
+
+            float x1 = map(tasks.get(i).getStart(), 1, maxMonths, border_left, width - border);
+            float x2 = map(tasks.get(i).getEnd(), 1, maxMonths, border_left, width - border);
+
+            if (mouseX >= x1 && mouseX <= x1 + 20 && mouseY >= y1 && mouseY <= y2)
+            {
+                whichTask = i;
+                isEnd = false;
+                return;
+
+            }   // end if
+
+            if (mouseX <= x2 && mouseX >= x2 - 20 && mouseY >= y1 && mouseY <= y2)
+            {
+                whichTask = i;
+                isEnd = true;
+                return;
+
+            }   // end if
+
+        }   // end for
+
+        whichTask = -1;
+
+	}   // end mousePressed
 
 	public void mouseDragged()
 	{
-		println("Mouse dragged");
+        if (whichTask != -1)
+        {
+            int month = (int) map(mouseX, border_left, width - border, 1, maxMonths);
+
+            if (month >= 1 && month <= maxMonths)
+            {
+                Task t = tasks.get(whichTask);
+
+                if (isEnd)
+                {
+                    if (month - t.getStart() > 0)
+                    {
+                        t.setEnd(month);
+
+                    }
+                }
+                else
+                {
+                    if (t.getEnd() - month > 0)
+                    {
+                        t.setStart(month);
+                    }
+
+                }   // end inner if 1
+
+            }   // end inner if 2
+
+        }   // end outer if
 	}
 
     public void settings()
