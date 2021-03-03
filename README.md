@@ -4,3 +4,4 @@
 2. Loops and Arrays
 3. Game of Life
 4. Star Map
+5. Bar Chart
