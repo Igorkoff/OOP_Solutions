@@ -29,7 +29,7 @@ public class Task
 
     }   // end constructor 1
 
-    // Getters and Setters
+    // Task: Getter and Setter
 
     public String getTask()
     {
@@ -41,6 +41,8 @@ public class Task
         this.task = task;
     }
 
+    // Start: Getter and Setter
+
     public int getStart()
     {
         return start;
@@ -50,6 +52,8 @@ public class Task
     {
         this.start = start;
     }
+
+    // End: Getter and Setter
 
     public int getEnd() 
     {
