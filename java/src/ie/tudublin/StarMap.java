@@ -25,10 +25,24 @@ public class StarMap extends PApplet
 
             if (dist(mouseX, mouseY, x, y ) < s.getAbsMag() / 2)
             {
-                println(s.getDisplayName());
-                break;
+                if (startStar == -1)
+                {
+                    startStar = i;
+                    break;
+                }
+                else if (endStar == -1)
+                {
+                    endStar = i;
+                    break;
+                }
+                else
+                {
+                    startStar = i;
+                    endStar = -1;
 
-            }   // end if
+                }   // end inner if
+
+            }   // end outer if
 
         }   // end for
 
@@ -110,6 +124,39 @@ public class StarMap extends PApplet
         background(0);
         drawGrid();
         drawStars();
+
+        if (startStar != -1 && endStar == -1)
+        {
+            Star s = stars.get(startStar);
+            float border = 0.1f * width;
+        
+            float x = map(s.getxG(), -5, 5, border, width - border);
+            float y = map(s.getyG(), -5, 5, border, height - border);
+
+            stroke(255, 255, 0);
+            line(x, y, mouseX, mouseY);
+        }
+        else if (startStar != -1 && endStar != -1)
+        {
+            Star s1 = stars.get(startStar);
+            Star s2 = stars.get(endStar);
+            float border = 0.1f * width;
+
+            float x1 = map(s1.getxG(), -5, 5, border, width - border);
+            float y1 = map(s1.getyG(), -5, 5, border, height - border);
+            float x2 = map(s2.getxG(), -5, 5, border, width - border);
+            float y2 = map(s2.getyG(), -5, 5, border, height - border);
+
+            stroke(255, 255, 0);
+            line(x1, y1, x2, y2);
+            
+            float dist = dist(s1.getxG(), s1.getyG(), s1.getzG(), s2.getxG(), s2.getyG(), s2.getzG());
+
+            stroke(255);
+            textAlign(CENTER, CENTER);
+            text("Distance between " + s1.getDisplayName() + " and " + s2.getDisplayName() + " is " + dist + " parsecs", width /2 , height - (border / 2));
+
+        }   // end if
 
     }   // end draw
 
