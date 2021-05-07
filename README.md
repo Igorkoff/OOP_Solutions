@@ -5,3 +5,4 @@
 3. Game of Life
 4. Star Map
 5. Bar Chart
+6. Rapid Response
